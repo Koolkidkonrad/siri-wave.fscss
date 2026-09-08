@@ -5,13 +5,13 @@
 ## The preset you already know
 
 ```fscss
-@define siri-wave-preset(st:.siri-wave){
+@define siri-wave-preset(st:.siri-wave){`
   @siri-base(@use(st))
   @siri-wave(@use(st))
   @siri-line(@use(st) .siri-line)
   @siri-blob(@use(st) .blob)
   @siri-blob-colors(@use(st) .blob)
-}
+`}
 ```
 
 Five calls, all scoped to the same `st`, layered inside-out. That last line — "**five calls, one anchor**" — is the entire recipe.
@@ -21,14 +21,14 @@ Five calls, all scoped to the same `st`, layered inside-out. That last line — 
 Take `siri-wave-preset` and grow it with the mixin from Advanced/02:
 
 ```fscss
-@define my-siri-preset(st:.siri-wave){
+@define my-siri-preset(st:.siri-wave){`
   @siri-base(@use(st))
   @siri-wave(@use(st))
   @siri-line(@use(st) .siri-line)
   @siri-blob(@use(st) .blob)
   @siri-blob-colors(@use(st) .blob)
   @siri-blob-variant-plus(@use(st) .blob, magenta)
-}
+`}
 ```
 
 Now every `my-siri-preset` site gets the stock wave *plus* magenta's custom animation-name handling. Call it exactly like the stock one:
@@ -44,7 +44,7 @@ One line, whole enhanced wave.
 Presets can emit more than mixin calls — plain CSS too:
 
 ```fscss
-@define branded-wave(st:.brand-wave){
+@define branded-wave(st:.brand-wave){`
   @siri-base(@use(st))
   @siri-wave(@use(st))
   @siri-line(@use(st) .siri-line)
@@ -58,7 +58,7 @@ Presets can emit more than mixin calls — plain CSS too:
     border-radius: inherit;
     box-shadow: inset 0 0 40px rgba(0,0,0,0.55);
   }
-}
+`}
 ```
 
 The `::after` vignette rides along in every `@branded-wave()` call. Markup? Unchanged. That's a preset carrying a *design opinion* — massively repeated value in one reusable block.
@@ -68,12 +68,12 @@ The `::after` vignette rides along in every `@branded-wave()` call. Markup? Unch
 Presets can pass parameters through like any define:
 
 ```fscss
-@define energy-wave(st, spike){
+@define energy-wave(st, spike){`
   @siri-wave-preset(@use(st))
   @use(st){
     --blob-magenta-height: @use(spike);
   }
-}
+`}
 
 @energy-wave(.hero-wave, 140px)
 ```

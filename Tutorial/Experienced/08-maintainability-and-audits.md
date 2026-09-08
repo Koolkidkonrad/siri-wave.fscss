@@ -7,7 +7,7 @@ Software doesn't rot when it's read. Waves rot when their knobs stop making sens
 **1. Token inventory against usage.**
 
 ```fscss
-exec(_log, "@arr token-usage!.list")   /* conceptual — see note */
+exec(_log, "@arr.token-usage!.list")   /* conceptual — see note */
 ```
 
 Realistically: grep your sheet for `--siri-wave-` and `--blob-`. Every token should be *read by a mixin* or *used as an override*. A "knob nothing turns" (Advanced/01 warned) is debt: future-you rewires it for a knob that was supposed to work already.

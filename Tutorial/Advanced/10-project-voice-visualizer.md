@@ -38,13 +38,13 @@ breathe-tokens()   /* from Advanced/01 — your own motion system */
 **preset.fscss** — the component:
 
 ```fscss
-@define voice-preset(st:.siri-wave){
+@define voice-preset(st:.siri-wave){`
   @siri-wave-preset(@use(st))
   @use(st){
     --blob-opacity: @event.wave-state(idle);
     --blob-filter: blur(9px);
   }
-}
+`}
 ```
 
 **main.fscss** — imports + calls:

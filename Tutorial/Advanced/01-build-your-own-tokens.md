@@ -5,13 +5,13 @@ You've overridden tokens a dozen times. Now you'll *write your own token set* �
 ## The source you're copying
 
 ```fscss
-@define siri-tokens(root:root){
+@define siri-tokens(root:root){`
   @use(root){
     --siri-wave-container-width: 100%;
     /* ... */
   }
   @keyframes siri-pulse { ... }
-}
+`}
 ```
 
 A `@define` declaring a parameter (`root:root`), dumping variables into a selector, shipping keyframes beside them. That's it. There's no ritual — a token mixin is just a define whose job is variables.
@@ -19,7 +19,7 @@ A `@define` declaring a parameter (`root:root`), dumping variables into a select
 ## Your own, cleaner version
 
 ```fscss
-@define breathe-tokens(root:root){
+@define breathe-tokens(root:root){`
   :@use(root){
     --breathe-box-bg: #0a0a12;
     --breathe-box-height: 200px;
@@ -31,16 +31,16 @@ A `@define` declaring a parameter (`root:root`), dumping variables into a select
     0%, 100% { transform: scale(0.7); opacity: 0.5; }
     50%      { transform: scale(1.2); opacity: 1; }
   }
-}
+`}
 
-@define breathe-dots(st){
+@define breathe-dots(st){`
   @use(@use(st) .dot){
     width: 40px; height: 40px;
     border-radius: 50%;
     background: var(--breathe-dot-color, #ff2ecb);
     animation: breathe-pulse 1.6s infinite ease-in-out;
   }
-}
+`}
 
 breathe-tokens()
 breathe-dots(.stage)
@@ -50,7 +50,7 @@ You now maintain your own small motion system: `breathe-tokens()` for knobs + ke
 
 ## The block-string path
 
-Earlier in the course you saw defines carry backtick templates. Tokens can too — handy when the variable block gets long:
+Earlier in the course you saw defines carry backtick templates. Tokens can too — handy when the variable block is nested:
 
 ```fscss
 @define breathe-tokens(root:root){
@@ -77,11 +77,11 @@ Same output, stringier source. Which you prefer is taste; the source and the blo
 One honest exception: token *values* should live in one define (that's `siri-tokens`), but token *lifetime* is yours to manage. siri-tokens writes to `:root` so tokens are global. Set the same define to write to a scoped class and you get scoped tokens for free:
 
 ```fscss
-@define breathe-tokens(s: .hero){
+@define breathe-tokens(s: .hero){`
   @use(@use(s)){
     --breathe-box-height: 300px;
   }
-}
+`}
 ```
 
 Same mixin, different scope. The parameterization was there all along.

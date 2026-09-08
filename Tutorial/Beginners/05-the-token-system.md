@@ -34,14 +34,14 @@ Two things worth noticing even at the "container" stage:
 `siri-tokens()` isn't magic — it's this, roughly:
 
 ```fscss
-@define siri-tokens(root:root){
+@define siri-tokens(root:root){`
   @use(root){
     --siri-wave-container-width: 100%;
     --siri-wave-container-max-width: 560px;
     /* ...and so on... */
   }
   @keyframes siri-pulse { ... }
-}
+`}
 ```
 
 So it's a mixin that dumps variables into a scope (the default `:root`) and also drops the keyframes next to them. One call, all the defaults, page-global.

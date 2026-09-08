@@ -69,13 +69,13 @@ Magenta becomes the dominant spike, fast. This is the exact knob the Advanced-le
 ## The rule that ties it together
 
 ```fscss
-@siri-blob-variant(st, color) {
+@siri-blob-variant(st, color) {`
   @use(st) {
     width: var(--blob-@use(color)-width, 70px);
     height: var(--blob-@use(color)-height, 40px);
     /* ... */
   }
-}
+`}
 ```
 
 One mixin, parameterized by a *color name string*, reads six variables built from that name. It never knows what "magenta" means; it just assembles `--blob-magenta-*`. Same trick powers the whole library.

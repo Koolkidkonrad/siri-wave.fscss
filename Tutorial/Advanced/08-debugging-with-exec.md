@@ -15,7 +15,7 @@ This is the fastest way to check a token or array without compiling anything els
 
 ```fscss
 exec(_log, "siri-colors list is here")
-exec(_log, "@arr wave-names!.list")
+exec(_log, "@arr.wave-names!.list")
 ```
 
 The `!.` is *method access mode* (docs) — `.list` joins the array into a readable string. Perfect for "is my array the length I think it is?"
@@ -25,14 +25,17 @@ The `!.` is *method access mode* (docs) — `.list` joins the array into a reada
 The classic debugging target: your generated variants (Advanced/03). You *believe* the loop fires six times; the console tells you:
 
 ```fscss
-@define wave-variants(st){
+@define wave-variants(st){`
   @arr wave-names[magenta, gold, teal, lime, coral, violet, sky]
   @arr wave-i[count(7,1)]
 
   exec(_log, "loop: @arr.wave-i[] -> @arr.wave-names[@arr.wave-i[]]")
 
   @siri-blob-variant(@use(st).@arr.wave-names[@arr.wave-i[]], @arr.wave-names[@arr.wave-i[]])
+@use(st){
+--index: @arr.wave-i[];
 }
+`}
 ```
 
 Run the page and read:
@@ -49,10 +52,10 @@ Seven lines. If you wrote `count(6,1)` you'd see six — and the silent seventh 
 ## `_warn` for "this shouldn't happen"
 
 ```fscss
-@define my-preset(st){
+@define my-preset(st){`
   exec(_warn, "my-preset called without a token call — defaults in effect")
   @siri-wave-preset(@use(st))
-}
+`}
 ```
 
 Warnings don't block, but they *talk*. Handy when a consumer of your mixin skips setup. Ugly in normal output, informative when something's actually off.
@@ -61,7 +64,7 @@ Warnings don't block, but they *talk*. Handy when a consumer of your mixin skips
 
 `exec()` tells you what FSCSS *thought*. The compiled CSS tells you what the page *got*. DevTools → Search for `.blob.magenta`. You should see a rule whose declarations read `var(--blob-magenta-…)`. Three failures to look for there:
 
-- No `.blob.magenta` rule → the loop never fired → array length mismatch (check `exec(_log, "@arr wave-names!.length")`).
+- No `.blob.magenta` rule → the loop never fired → array length mismatch (check `exec(_log, "@arr.wave-names!.length")`).
 - Rule exists but a property is wrong → token unset → check `:root` actually carried it (the var may be missing from the token set).
 - Rule exists, wave dead-silent → animation is off. Search for `@keyframes siri-pulse`. If it's not in the compiled CSS, `siri-tokens()` never ran — the classic "called the preset without the tokens" bug.
 

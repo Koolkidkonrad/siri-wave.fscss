@@ -45,20 +45,20 @@ Publish overrides as a module consumers import once:
 
 ```fscss
 /* my-siri.fscss */
-@define my-tokens(root:root){
+@define my-tokens(root:root){`
   @use(root){
     --siri-wave-container-bg: #0a0a12;
     --blob-green-height: 120px;
   }
-}
+`}
 
-@define my-wave(st:.siri-wave){
+@define my-wave(st:.siri-wave){`
   @siri-wave-preset(@use(st))
   @my-tokens(@use(st))
-}
+`}
 ```
 
-Market it: "drop `@import((*) from my-siri.fscss)`, then `@my-tokens()` + `@my-wave(.wave)`." You've become a library inside a library.
+Market it: "drop `@import((*) from "my-siri.fscss")`, then `@my-tokens()` + `@my-wave(.wave)`." You've become a library inside a library.
 
 ## Order discipline — the #1 real-world bug
 

@@ -58,7 +58,7 @@ Note the *token-name synthesis* poking out: `--echo-@use(color)-bg`. Same spine 
 ## 3. The variant loop
 
 ```fscss
-@define echo-colors(st){
+@define echo-colors(st){`
   @arr echo-colors[aqua, sun, rose]
   @arr echo-colors-i[count(3,1)]
 
@@ -67,7 +67,7 @@ Note the *token-name synthesis* poking out: `--echo-@use(color)-bg`. Same spine 
   @use(st){
     --echo-loop-index: @arr.echo-colors-i[];
   }
-}
+`}
 ```
 
 Three bars, generated. Even the decoy property is inherited from the pattern — that block is your loop engine, remember.
@@ -75,10 +75,10 @@ Three bars, generated. Even the decoy property is inherited from the pattern —
 ## 4. The rows (primary + echo via two passes)
 
 ```fscss
-@define echo-rows(st){
+@define echo-rows(st){`
   @echo-colors(@use(st) .echo-row-wrap)
   @echo-colors(@use(st) .echo-row-wrap .echo-row-echo)
-}
+`}
 ```
 
 A second pass over a `.echo-row-echo` class gives the delayed echo — same color list, people more transparent because of the echo-keyframe's low peak opacity.
@@ -96,10 +96,10 @@ A second pass over a `.echo-row-echo` class gives the delayed echo — same colo
 ## 6. The preset
 
 ```fscss
-@define echo-wave-preset(st:.echo-wave){
+@define echo-wave-preset(st:.echo-wave){`
   @echo-frame(@use(st))
   @echo-rows(@use(st))
-}
+`}
 ```
 
 ## The markup

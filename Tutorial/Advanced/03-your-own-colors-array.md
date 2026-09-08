@@ -18,12 +18,15 @@ Revisit the loop brain (from Inter/02): there's a **names** array (`siri-colors[
 Then generate the variants and their classes:
 
 ```fscss
-@define wave-variants(st){
+@define wave-variants(st){`
   @arr wave-names[magenta, gold, teal, lime, coral, violet, sky]
   @arr wave-i[count(7,1)]
 
   @siri-blob-variant(@use(st).@arr.wave-names[@arr.wave-i[]], @arr.wave-names[@arr.wave-i[]])
+@use(st){
+--blob-variant-trigger: @arr.wave-i[];
 }
+`}
 ```
 
 Wait — reading `@use(st).wave-names[1]` → `.wave.magenta`. Position 1 is still *named* magenta, so tell the array it lives at index 1. The meshing of class name and token name is what the loop sells: `.blob.gold` reads `--blob-gold-*`, and you define those tokens:

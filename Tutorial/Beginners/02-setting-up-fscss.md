@@ -1,6 +1,6 @@
 # 02 — Setting up FSCSS
 
-siri-wave runs on top of FSCSS. FSCSS is a CSS preprocessor that runs its mixins and turns them into plain CSS — but here it does it *in the browser*, at runtime. So "setup" means: load the FSCSS runtime, then let siri-wave write your CSS for you.
+siri-wave runs on top of FSCSS. FSCSS is a CSS preprocessor that runs its mixins and turns them into plain CSS — it's available for prototyping *in the browser too*, at runtime. So no setup in testing mode: load the FSCSS runtime, then let siri-wave write your CSS for you.
 
 ## The runtime
 
@@ -48,9 +48,8 @@ Don't add the wave yet — just prove FSCSS is alive and talking to siri-wave:
     <style>
 @import((*) from siri-wave)
 
-siri-tokens() {
-  demo-check: 1;
-}
+siri-tokens()
+/* use.... */
     </style>
 </head>
 <body></body>
@@ -82,7 +81,7 @@ You don't need to type that today. It exists so the ecosystem knows: name is `si
 ## Recap
 
 1. Include the runtime with `defer`.
-2. `@import((*) from siri-wave)` in your style block.
+2. `@import((*) from siri-wave)` in your stylesheet.
 3. Verify `@keyframes siri-pulse` exists in compiled CSS.
 
 Setup done. Now the fun part — [03 — Your first siri-wave](03-your-first-siri-wave.md).

@@ -15,7 +15,7 @@ Referenced with `!` to evaluate where you use them:
 :root {
   --siri-wave-container-height: $waveHeight!;
   --blob-green-left: $blobTop!;
-  --blob-cyan-left: num($blobTop! - 6)%!;
+  --blob-cyan-left: num($blobTop! - 6)%;
 }
 ```
 

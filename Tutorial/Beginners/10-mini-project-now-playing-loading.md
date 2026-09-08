@@ -59,7 +59,7 @@ Two preset anchors: `.main-wave` and `.buffer-wave`.
   --siri-wave-container-bg: #11111c;
 }
 
-@use(.boot-screen){
+.boot-screen{
   display: flex;
   flex-direction: column;
   align-items: center;
